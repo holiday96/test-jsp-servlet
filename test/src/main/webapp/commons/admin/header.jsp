@@ -96,7 +96,7 @@
 
     <!-- Sidebar Message -->
     <div class="sidebar-card">
-        <img class="sidebar-card-illustration mb-2" src="img/undraw_rocket.svg" alt="">
+        <img class="sidebar-card-illustration mb-2" src="https://i.pinimg.com/236x/c4/70/26/c47026a9fce3fc13e7f8c115b5d7676c.jpg" alt="">
         <p class="text-center mb-2">
             <strong>SB Admin Pro</strong> is packed with premium features, components, and more!
         </p>
