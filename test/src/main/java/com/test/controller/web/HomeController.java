@@ -1,6 +1,7 @@
 package com.test.controller.web;
 
 import java.io.IOException;
+import java.util.ResourceBundle;
 
 import javax.inject.Inject;
 import javax.servlet.RequestDispatcher;
@@ -26,11 +27,19 @@ public class HomeController extends HttpServlet {
 
 	@Inject
 	private IUserService userService;
+	
+	ResourceBundle resourceBundle = ResourceBundle.getBundle("message");
 
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse respone) throws ServletException, IOException {
 		String action = request.getParameter("action");
 		if (action != null && action.equals("login")) {
+			String message = request.getParameter("message");
+			String alert = request.getParameter("alert");
+			if (message != null && alert != null) {
+				request.setAttribute("message", resourceBundle.getString(message));
+				request.setAttribute("alert", alert);
+			}
 			RequestDispatcher rd = request.getRequestDispatcher("/views/login.jsp");
 			rd.forward(request, respone);
 		} else if (action != null && action.equals("logout")) {
@@ -58,7 +67,8 @@ public class HomeController extends HttpServlet {
 					respone.sendRedirect(request.getContextPath() + "/admin");
 				}
 			} else {
-				respone.sendRedirect(request.getContextPath() + "/login?action=login");
+				respone.sendRedirect(request.getContextPath()
+						+ "/login?action=login&message=username_password_invalid&alert=danger");
 			}
 		}
 	}

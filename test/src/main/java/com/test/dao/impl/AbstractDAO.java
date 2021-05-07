@@ -9,31 +9,23 @@ import java.sql.Statement;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.ResourceBundle;
 
 import com.test.dao.GenericDAO;
-import com.test.dao.INewDAO;
 import com.test.mapper.RowMapper;
-import com.test.model.NewModel;
-import com.test.paging.Pageble;
-import com.test.service.INewService;
-import com.test.service.impl.NewService;
-import com.test.sort.Sorter;
 
 public class AbstractDAO<T> implements GenericDAO<T> {
 
-//	ResourceBundle resourceBundle = ResourceBundle.getBundle("db");
+	ResourceBundle resourceBundle = ResourceBundle.getBundle("db");
 
 	public Connection getConnection() {
+		
 		try {
-//			Class.forName(resourceBundle.getString("driverName"));
-//			String url = resourceBundle.getString("url");
-//			String user = resourceBundle.getString("user");
-//			String password = resourceBundle.getString("password");
+			Class.forName(resourceBundle.getString("driverName"));
+			String url = resourceBundle.getString("url");
+			String user = resourceBundle.getString("user");
+			String password = resourceBundle.getString("password");
 
-			Class.forName("com.mysql.cj.jdbc.Driver");
-			String url = "jdbc:mysql://localhost:3306/test";
-			String user = "abc";
-			String password = "abc";
 			return DriverManager.getConnection(url, user, password);
 		} catch (ClassNotFoundException | SQLException e) {
 			return null;
