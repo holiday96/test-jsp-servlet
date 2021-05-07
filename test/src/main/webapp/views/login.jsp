@@ -8,7 +8,8 @@
 	<div class="wrapper fadeInDown">
 		<div id="formContent">
 			<c:if test="${not empty message}">
-				<div class="alert alert-${alert}">
+				<div class="alert alert-${alert} alert-dismissible">
+					<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
 					<strong>${message}</strong>
 				</div>
 			</c:if>
