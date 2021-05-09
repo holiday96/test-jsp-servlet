@@ -14,6 +14,7 @@ import com.test.constant.SystemConstant;
 import com.test.model.NewModel;
 import com.test.paging.PageRequest;
 import com.test.paging.Pageble;
+import com.test.service.ICategoryService;
 import com.test.service.INewService;
 import com.test.sort.Sorter;
 import com.test.utils.FormUtil;
@@ -25,17 +26,32 @@ public class NewController extends HttpServlet {
 
 	@Inject
 	private INewService newService;
+	
+	@Inject
+	private ICategoryService categoryService;
 
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse respone) throws ServletException, IOException {
 		NewModel model = FormUtil.toModel(NewModel.class, request);
-		Pageble pageble = new PageRequest(model.getPage(), model.getMaxPageItem(),
-				new Sorter(model.getSortName(), model.getSortBy()));
-		model.setListResult(newService.findAll(pageble));
-		model.setTotalItem(newService.getTotalItem());
-		model.setTotalPage((int) Math.ceil((double) model.getTotalItem() / model.getMaxPageItem()));
+		String view = "";
+		if (model.getType().equals(SystemConstant.LIST)) {
+			Pageble pageble = new PageRequest(model.getPage(), model.getMaxPageItem(),
+					new Sorter(model.getSortName(), model.getSortBy()));
+			model.setListResult(newService.findAll(pageble));
+			model.setTotalItem(newService.getTotalItem());
+			model.setTotalPage((int) Math.ceil((double) model.getTotalItem() / model.getMaxPageItem()));
+			view = "/views/admin/news/list.jsp";
+		} else if (model.getType().equals(SystemConstant.EDIT)) {
+			if (model.getId() != null) {
+				model = newService.findOne(model.getId());
+			} else {
+				
+			}
+			request.setAttribute("categories", categoryService.findAll());
+			view = "/views/admin/news/edit.jsp";
+		}
 		request.setAttribute(SystemConstant.MODEL, model);
-		RequestDispatcher rd = request.getRequestDispatcher("/views/admin/news/list.jsp");
+		RequestDispatcher rd = request.getRequestDispatcher(view);
 		rd.forward(request, respone);
 	}
 

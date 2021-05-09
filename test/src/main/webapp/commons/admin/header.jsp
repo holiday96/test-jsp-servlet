@@ -18,7 +18,7 @@
 
     <!-- Nav Item - Dashboard -->
     <li class="nav-item active">
-        <a class="nav-link" href="<c:url value='/admin-news?page=1&maxPageItem=2&sortName=title&sortBy=desc'/>"> <i class="fas fa-fw fa-tachometer-alt"></i> <span>Dashboard</span></a>
+        <a class="nav-link" href="<c:url value='/admin-news?page=1&maxPageItem=2&sortName=title&sortBy=desc&type=list'/>"> <i class="fas fa-fw fa-tachometer-alt"></i> <span>Dashboard</span></a>
     </li>
 
     <!-- Divider -->
@@ -29,12 +29,14 @@
 
     <!-- Nav Item - Pages Collapse Menu -->
     <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo"> <i class="fas fa-fw fa-cog"></i> <span>Components</span>
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo"> <i class="fas fa-fw fa-cog"></i> <span>News</span>
         </a>
         <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
-                <h6 class="collapse-header">Custom Components:</h6>
-                <a class="collapse-item" href="buttons.html">Buttons</a> <a class="collapse-item" href="cards.html">Cards</a>
+                <h6 class="collapse-header">Functions</h6>
+                <a class="collapse-item" href="#">✨ Create </a>
+                <a class="collapse-item" href="#">✏ Edit </a>
+                <a class="collapse-item" href="#">🧨 Delete</a>
             </div>
         </div>
     </li>

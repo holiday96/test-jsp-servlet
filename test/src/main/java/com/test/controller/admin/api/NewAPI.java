@@ -11,40 +11,47 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.test.model.NewModel;
+import com.test.model.UserModel;
 import com.test.service.INewService;
 import com.test.utils.HttpUtil;
+import com.test.utils.SessionUtil;
 
-@WebServlet(urlPatterns = {"/api-admin-new"})
-public class NewAPI extends HttpServlet{
+@WebServlet(urlPatterns = { "/api-admin-new" })
+public class NewAPI extends HttpServlet {
 
 	@Inject
 	private INewService newService;
-	
+
 	private static final long serialVersionUID = -7256280602240763358L;
 
 	@Override
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		ObjectMapper mapper = new ObjectMapper();	//ObjectMapper dùng để đọc outputstream newModel qua json
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		ObjectMapper mapper = new ObjectMapper(); // ObjectMapper dùng để đọc outputstream newModel qua json
 		request.setCharacterEncoding("UTF-8");
 		response.setContentType("application/json");
 		NewModel newModel = HttpUtil.of(request.getReader()).toModel(NewModel.class);
+		newModel.setCreatedBy(((UserModel) SessionUtil.getInstance().getValue(request, "USERMODEL")).getUserName());
 		newModel = newService.save(newModel);
 		mapper.writeValue(response.getOutputStream(), newModel);
 	}
 
 	@Override
-	protected void doPut(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		ObjectMapper mapper = new ObjectMapper();	//ObjectMapper dùng để đọc outputstream newModel qua json
+	protected void doPut(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		ObjectMapper mapper = new ObjectMapper(); // ObjectMapper dùng để đọc outputstream newModel qua json
 		request.setCharacterEncoding("UTF-8");
 		response.setContentType("application/json");
 		NewModel newModel = HttpUtil.of(request.getReader()).toModel(NewModel.class);
+		newModel.setModifiedBy(((UserModel) SessionUtil.getInstance().getValue(request, "USERMODEL")).getUserName());
 		newModel = newService.update(newModel);
 		mapper.writeValue(response.getOutputStream(), newModel);
 	}
 
 	@Override
-	protected void doDelete(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		ObjectMapper mapper = new ObjectMapper();	//ObjectMapper dùng để đọc outputstream newModel qua json
+	protected void doDelete(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		ObjectMapper mapper = new ObjectMapper(); // ObjectMapper dùng để đọc outputstream newModel qua json
 		request.setCharacterEncoding("UTF-8");
 		response.setContentType("application/json");
 		NewModel newModel = HttpUtil.of(request.getReader()).toModel(NewModel.class);
