@@ -19,6 +19,9 @@
             <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/js/bootstrap.min.js"></script>
             <script src="<c:url value='/templates/admin/js/jquery.twbsPagination.js' />" type="text/javascript"></script>
 
+            <!--ckeditor-->
+            <script src="<c:url value='/ckeditor/ckeditor.js' />"></script>
+            
             <!-- Custom styles for this template-->
             <link href="<c:url value='/templates/admin/css/sb-admin-2.min.css' />" rel="stylesheet">
 
@@ -35,7 +38,7 @@
                     <div id="content-wrapper" class="d-flex flex-column">
 
                         <!-- Main Content -->
-                        <div id="content">
+                        <div id="main-content">
 
                             <%@ include file="/commons/admin/menu.jsp"%>
 
@@ -77,11 +80,11 @@
 
             <!-- Bootstrap core JavaScript-->
             <!-- xung đột với jquery-3.3.1.min.js -- line18 -->
-<%--             <script src="<c:url value='/templates/admin/jquery/jquery.min.js' />"></script> --%>	
-            <script src="<c:url value='/templates/admin/bootstrap/js/bootstrap.bundle.min.js' />"></script>
+            <%--             <script src="<c:url value='/templates/admin/jquery/jquery.min.js' />"></script> --%>
+                <script src="<c:url value='/templates/admin/bootstrap/js/bootstrap.bundle.min.js' />"></script>
 
-            <!-- Core plugin JavaScript-->
-            <script src="<c:url value='/templates/admin/jquery-easing/jquery.easing.min.js' />"></script>
+                <!-- Core plugin JavaScript-->
+                <script src="<c:url value='/templates/admin/jquery-easing/jquery.easing.min.js' />"></script>
 
         </body>
 

@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+        <c:url var="NewURL" value="/admin-news" />
 <!-- Sidebar -->
 <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
@@ -34,7 +35,7 @@
         <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
                 <h6 class="collapse-header">Functions</h6>
-                <a class="collapse-item" href="#">✨ Create </a>
+                <a class="collapse-item" href="${NewURL}?type=edit">✨ Create </a>
                 <a class="collapse-item" href="#">✏ Edit </a>
                 <a class="collapse-item" href="#">🧨 Delete</a>
             </div>

@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
     <%@ include file="/commons/taglib.jsp"%>
+        <c:url var="APIurl" value="/api-admin-new" />
+        <c:url var="NewURL" value="/admin-news" />
         <!DOCTYPE html>
         <html>
 
@@ -54,7 +56,7 @@
                                         <c:param name="id" value="${item.id}" />
                                     </c:url>
                                     <a class="btn btn-sm btn-primary btn-edit" data-toggle="tooltip" title="Cập nhật bài viết" href='${editURL}'>
-                                    	<i class="fas fa-pen-square" aria-hidden="true"></i>
+                                        <i class="fas fa-pen-square" aria-hidden="true"></i>
                                     </a>
                                 </td>
                             </tr>
@@ -92,6 +94,29 @@
                         }
                     });
                 });
+                $('#btnDelete').click(function() {
+                    var data = {};
+                    var ids = $('tbody input[type=checkbox]:checked').map(function() {
+                        return $(this).val();
+                    }).get();
+                    data['ids'] = ids;
+                    deleteNew(data);
+                });
+
+                function deleteNew(data) {
+                    $.ajax({
+                        url: '${APIurl}',
+                        type: 'DELETE',
+                        contentType: 'application/json',
+                        data: JSON.stringify(data),
+                        success: function(result) {
+                            window.location.href = "${NewURL}?type=list&maxPageItem=2&page=1";
+                        },
+                        error: function(error) {
+                            console.log(error);
+                        }
+                    })
+                }
             </script>
         </body>
 
