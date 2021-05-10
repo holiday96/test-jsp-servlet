@@ -18,6 +18,7 @@ import com.test.service.ICategoryService;
 import com.test.service.INewService;
 import com.test.sort.Sorter;
 import com.test.utils.FormUtil;
+import com.test.utils.MessageUtil;
 
 @WebServlet(urlPatterns = { "/admin-news" })
 public class NewController extends HttpServlet {
@@ -26,7 +27,7 @@ public class NewController extends HttpServlet {
 
 	@Inject
 	private INewService newService;
-	
+
 	@Inject
 	private ICategoryService categoryService;
 
@@ -44,12 +45,11 @@ public class NewController extends HttpServlet {
 		} else if (model.getType().equals(SystemConstant.EDIT)) {
 			if (model.getId() != null) {
 				model = newService.findOne(model.getId());
-			} else {
-				
 			}
 			request.setAttribute("categories", categoryService.findAll());
 			view = "/views/admin/news/edit.jsp";
 		}
+		MessageUtil.showMessage(request);
 		request.setAttribute(SystemConstant.MODEL, model);
 		RequestDispatcher rd = request.getRequestDispatcher(view);
 		rd.forward(request, respone);

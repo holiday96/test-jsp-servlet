@@ -11,12 +11,12 @@
         </head>
 
         <body>
+            <c:if test="${not empty messageResponse}">
+                <div class="alert alert-${alert}">
+                    ${messageResponse}
+                </div>
+            </c:if>
             <form action="<c:url value='/admin-news'/>" id="formSubmit" method="get">
-                <c:if test="${not empty message}">
-                    <div class="alert alert-${alert}">
-                        ${message}
-                    </div>
-                </c:if>
                 <div class="widget-box table-filter">
                     <div class="table-btn-controls">
                         <div class="pull-right tableTools-container">
@@ -26,7 +26,7 @@
                                                 <i class="fa fa-plus-circle bigger-110 purple"></i>
                                             </span>
                                 </a>
-                                <button id="btnDelete" type="button" class="dt-button buttons-html5 btn btn-white btn-primary btn-bold" data-toggle="tooltip" title='Xóa bài viết'>
+                                <button id="btnDelete" type="button" class="dt-button buttons-html5 btn btn-white btn-primary btn-bold" data-toggle="tooltip" data-toggle="modal" data-target="#deleteModal" title='Xóa bài viết'>
                                                 <span>
                                                     <i class="fa fa-trash-o bigger-110 pink"></i>
                                                 </span>
@@ -110,10 +110,10 @@
                         contentType: 'application/json',
                         data: JSON.stringify(data),
                         success: function(result) {
-                            window.location.href = "${NewURL}?type=list&maxPageItem=2&page=1";
+                            window.location.href = "${NewURL}?type=list&maxPageItem=2&page=1&message=delete_success";
                         },
                         error: function(error) {
-                            console.log(error);
+                            window.location.href = "${NewURL}?type=list&maxPageItem=2&page=1&message=error_system";
                         }
                     })
                 }

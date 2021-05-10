@@ -66,10 +66,10 @@
                         <div class="modal-header">
                             <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
                             <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-						<span aria-hidden="true">×</span>
-					</button>
+								<span aria-hidden="true">×</span>
+							</button>
                         </div>
-                        <div class="modal-body">Oh Nooo! Don't leave me! Really?!! Leave?? 😥😥.</div>
+                        <div class="modal-body">Oh Nooo! Don't leave me! Really?!! Leave?? 😥😥</div>
                         <div class="modal-footer">
                             <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
                             <a class="btn btn-primary" href="<c:url value='/logout?action=logout' />">Logout</a>

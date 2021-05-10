@@ -11,8 +11,8 @@
         </head>
 
         <body>
-            <c:if test="${not empty message}">
-                <div class="alert alert-${alert}">${message}</div>
+            <c:if test="${not empty messageResponse}">
+                <div class="alert alert-${alert}">${messageResponse}</div>
             </c:if>
             <form id="formSubmit">
                 <div class="form-group">
@@ -45,7 +45,7 @@
                 <div class="form-group">
                     <label class="col-sm-3 control-label no-padding-right">Hình đại diện</label>
                     <div class="col-sm-9">
-                        <input type="text" class="form-control" id="thumbnail" name="thumbnail" value="" />
+                        <input type="text" class="form-control" id="thumbnail" name="thumbnail" value="${model.thumbnail}" />
                     </div>
                 </div>
                 <div class="form-group">
@@ -97,10 +97,10 @@
                         data: JSON.stringify(data),
                         dataType: 'json',
                         success: function(result) {
-                            window.location.href = "${NewURL}?type=list&maxPageItem=2&page=1";
+                            window.location.href = "${NewURL}?type=edit&id="+result.id+"&message=insert_success";
                         },
                         error: function(error) {
-                            console.log(error);
+                            window.location.href = "${NewURL}?type=list&maxPageItem=2&page=1&message=error_system";
                         }
                     })
                 }
@@ -113,10 +113,10 @@
                         data: JSON.stringify(data),
                         dataType: 'json',
                         success: function(result) {
-                            console.log(result);
-                        },
+                        	window.location.href = "${NewURL}?type=edit&id="+result.id+"&message=update_success";
+                            },
                         error: function(error) {
-                            console.log(error);
+                        	window.location.href = "${NewURL}?type=list&maxPageItem=2&page=1&message=error_system";
                         }
                     })
                 }
