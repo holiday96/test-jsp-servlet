@@ -1,4 +1,4 @@
-use jspservletjdbc;
+use test;
 
 insert into role(code,name) values('ADMIN','ADMIN');
 insert into role(code,name) values('USER','USER');

@@ -1,4 +1,4 @@
-use jspservletjdbc;
+use test;
 
 CREATE TABLE role(
   id bigint NOT NULL PRIMARY KEY auto_increment,
@@ -10,7 +10,7 @@ CREATE TABLE role(
   modifiedby VARCHAR(255) NULL
 );
 
-CREATE TABLE user (
+CREATE TABLE user(
   id bigint NOT NULL PRIMARY KEY auto_increment,
   username VARCHAR(150) NOT NULL,
   password VARCHAR(150) NOT NULL,
